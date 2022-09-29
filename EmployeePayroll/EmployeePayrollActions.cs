@@ -44,13 +44,11 @@ namespace EmployeePayroll
 
             if (queryData.HasRows)
             {
-                do
+                while (queryData.Read())
                 {
-                    if (queryData.Read())
                         Console.WriteLine("ID : {0}, Gender : {1}, Name : {2}, Number : {3}, City : {4}, State : {5}, Zip : {6}, Salary : {7}, StartDate : {8}, Deductions : {9}, Taxpercent : {10}, TaxPaid: {11}, NetPay : {12} \n -----xxxx---- \n",
                             queryData.GetInt32(0), queryData.GetString(1), queryData.GetString(2), queryData.GetString(3), queryData.GetString(4), queryData.GetString(5), queryData.GetString(6), queryData.GetDouble(7), queryData.GetDateTime(8).ToShortDateString(), queryData.GetDouble(9), queryData.GetDouble(10), queryData.GetDouble(11), queryData.GetDouble(12));
                 }
-                while (queryData.NextResult());
             }
 
             CreateConnection.Close();
