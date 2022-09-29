@@ -95,5 +95,21 @@ namespace EmployeePayroll
             Console.WriteLine(start-end);
         }
 
+        public static void AddMultipleEmployeesUsingThreads(List<EmployeePayrollFields> employees)
+        {
+            DateTime start = DateTime.Now;
+
+            foreach (EmployeePayrollFields employee in employees)
+            {
+                Task thread = new Task(() =>
+                {
+                    AddEmployee(employee);
+                });
+                thread.Start();
+            }
+            DateTime end = DateTime.Now;
+            Console.WriteLine(start - end);
+        }
+
     }
 }
