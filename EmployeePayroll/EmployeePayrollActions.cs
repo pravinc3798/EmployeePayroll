@@ -56,6 +56,34 @@ namespace EmployeePayroll
             CreateConnection.Close();
         }
         
+        public static void UpdateBasePay(string empName, double newPay)
+        {
+            CreateConnection = new SqlConnection(ConnectionString);
+            CreateConnection.Open();
 
+            string query = $"select EmployeeId from tblEmployeePayroll where EmployeeName = '{empName}'";
+            SqlCommand sqlcommand = new SqlCommand(query, CreateConnection);
+            int empId = Convert.ToInt32(sqlcommand.ExecuteScalar());
+
+            query = $"update tblEmployeePayroll set BasicPay = {newPay} where EmployeeId = {empId}";
+            sqlcommand = new SqlCommand(query, CreateConnection);
+            sqlcommand.ExecuteNonQuery();
+
+            CreateConnection.Close();
+        }
+
+        public static void DeleteEmployeeCascade(string empName)
+        {
+            CreateConnection = new SqlConnection(ConnectionString);
+            CreateConnection.Open();
+
+            SqlCommand storedProcedure = new SqlCommand("DeleteEmployee", CreateConnection);
+            storedProcedure.CommandType = System.Data.CommandType.StoredProcedure;
+
+            storedProcedure.Parameters.AddWithValue("@name", empName);
+            storedProcedure.ExecuteNonQuery();
+
+            CreateConnection.Close();
+        }
     }
 }

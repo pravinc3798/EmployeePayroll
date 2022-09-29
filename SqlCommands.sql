@@ -86,4 +86,13 @@ exec AddEmployee 'Xyz','M','9887766550','someCity','someState','123456','2022-09
 
 exec GetCompleteDetails;
 
+create procedure DeleteEmployee 
+@name varchar(60)
+as
+declare @id as int
+select @id = EmployeeId from tblEmployeePayroll where EmployeeName = @name 
+delete from tblTaxDetails where EmployeeId = @id
+delete from tblEmployeeDetails where EmployeeId = @id
+delete from tblEmployeePayroll where EmployeeId = @id
+
 
