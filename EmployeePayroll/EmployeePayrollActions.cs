@@ -83,5 +83,17 @@ namespace EmployeePayroll
 
             CreateConnection.Close();
         }
+
+        public static void AddMultipleEmployees(List<EmployeePayrollFields> employees)
+        {
+            DateTime start = DateTime.Now;
+
+            foreach (EmployeePayrollFields employee in employees)
+                AddEmployee(employee);
+
+            DateTime end = DateTime.Now;
+            Console.WriteLine(start-end);
+        }
+
     }
 }
