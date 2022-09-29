@@ -4,8 +4,10 @@
     {
         static void Main(string[] args)
         {
-            EmployeePayrollFields employee = new EmployeePayrollFields("mno", 57.15f, DateTime.Now, 'M', "1425367489", "Bhopal", "M.P", "104125", 1.35f, 0.04f);
-            EmployeePayrollActions.AddEmployee(employee);
+            EmployeePayrollFields employee = new EmployeePayrollFields("mno", 57.15, DateTime.Now, 'M', "1425367489", "Bhopal", "M.P", "104125", 1.35, 0.04);
+            //EmployeePayrollActions.AddEmployee(employee);
+
+            EmployeePayrollActions.ViewEmployees();
         }
     }
 }
